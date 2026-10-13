@@ -79,6 +79,39 @@ const PLACES = [
     address: "Jacó, Puntarenas (approximate location)",
     website: "https://www.airbnb.com/rooms/1148016778896940364",
     websiteLabel: "View on Airbnb" },
+  { id: "conchal", kind: "beach", name: "Playa Conchal", lat: 10.4015, lng: -85.80554, loop: false, status: "Not on the 8-day loop",
+    summary: "Sand made of crushed shells and clear turquoise water, with calm swimming and the best snorkeling around the rocky points.",
+    suits: "Swimming and snorkeling" },
+  { id: "flamingo", kind: "beach", name: "Playa Flamingo", lat: 10.43544, lng: -85.79253, loop: false, status: "Not on the 8-day loop",
+    summary: "A long white-sand beach, mapped as Playa Blanca, with easy swimming that is calmest in the morning.",
+    suits: "Swimming" },
+  { id: "hermosa-gte", kind: "beach", name: "Playa Hermosa (Guanacaste)", lat: 10.57561, lng: -85.6784, loop: false, status: "Not on the 8-day loop",
+    summary: "A sheltered grey-sand bay near Liberia with gentle water, snorkeling off the rocky ends, and paddleboarding. Not the Jacó surf beach of the same name.",
+    suits: "Families, calm swimming, snorkeling" },
+  { id: "samara", kind: "beach", name: "Playa Sámara", lat: 9.87385, lng: -85.5119, loop: false, status: "Not on the 8-day loop",
+    summary: "A bay protected by an offshore reef, calm and shallow in the middle. Rips run by the western rocks and the eastern river mouth.",
+    suits: "Families and safe swimming" },
+  { id: "santa-teresa", kind: "beach", name: "Playa Santa Teresa", lat: 9.64381, lng: -85.17035, loop: false, status: "Not on the 8-day loop",
+    summary: "A long, exposed Pacific beach with consistent beach-break surf. Shifting sandbars and rips make it a poor swimming beach.",
+    suits: "Surfing, intermediate and up" },
+  { id: "montezuma", kind: "beach", name: "Playa Montezuma", lat: 9.6566, lng: -85.0653, loop: false, status: "Not on the 8-day loop",
+    summary: "A rocky, palm-backed beach in front of the village. Waves and rips make it better for walking, with a calmer cove south of town and waterfalls nearby.",
+    suits: "Walks, waterfalls, beginner surf nearby" },
+  { id: "manuel-beach", kind: "beach", name: "Playa Manuel Antonio", lat: 9.38088, lng: -84.1456, loop: false, status: "Not on the 8-day loop",
+    summary: "A sheltered cove inside Manuel Antonio National Park, usually calm for swimming, with snorkeling near the rocky ends.",
+    suits: "Swimming with wildlife around" },
+  { id: "ballena", kind: "beach", name: "Marino Ballena (Whale's Tail)", lat: 9.13048, lng: -83.7485, loop: false, status: "Not on the 8-day loop",
+    summary: "A marine national park at Uvita whose Whale's Tail sandbar can be walked at low tide. The protected water by Punta Uvita is the calmest swim in the area.",
+    suits: "Low-tide walks, calm swimming, whales in season" },
+  { id: "punta-uva", kind: "beach", name: "Punta Uva", lat: 9.63876, lng: -82.69354, loop: false, status: "Not on the 8-day loop",
+    summary: "A protected Caribbean bay south of Puerto Viejo with calm water and reef snorkeling on flat, clear mornings.",
+    suits: "Swimming and snorkeling" },
+  { id: "tortuga", kind: "beach", name: "Isla Tortuga", lat: 9.77326, lng: -84.89548, loop: false, status: "Not on the 8-day loop",
+    summary: "An island in the Gulf of Nicoya, kept as protected forest, with a white-sand beach and turquoise water that is good for swimming. Reached by day cruise from Puntarenas.",
+    suits: "A boat day with swimming and snorkeling",
+    tour: "https://bayislandcruises.com/",
+    tourLabel: "Tour: Bay Island Cruises",
+    tourPhone: "+506 2235 3536" },
   { id: "puerto-viejo", kind: "beach", name: "Puerto Viejo", lat: 9.6559, lng: -82.7549, loop: false,
     summary: "Caribbean beaches and food, with Cahuita just up the road.",
     suits: "A different coast and Caribbean food" },
@@ -242,6 +275,18 @@ if (mapCanvas && window.L) {
       site.target = "_blank";
       site.rel = "noopener";
       links.append(site);
+    }
+    if (place.tour) {
+      const tour = el("a", "", place.tourLabel || "Tour");
+      tour.href = place.tour;
+      tour.target = "_blank";
+      tour.rel = "noopener";
+      links.append(tour);
+    }
+    if (place.tourPhone) {
+      const tourTel = el("a", "", `Tour ${place.tourPhone}`);
+      tourTel.href = `tel:${place.tourPhone.replace(/\s+/g, "")}`;
+      links.append(tourTel);
     }
     const gmaps = el("a", "", "Google Maps");
     gmaps.href = mapsUrl(place);

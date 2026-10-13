@@ -527,6 +527,7 @@ a:hover {
 .pin-kind-nature { background: #2f6b2f; }
 .pin-kind-zipline { background: var(--amber-ink); }
 .pin-kind-stay { background: #6b3552; }
+.pin-kind-attraction { background: #2e4f80; }
 
 .pin[class*="pin-kind-"] {
   color: var(--paper);

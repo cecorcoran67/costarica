@@ -112,6 +112,29 @@ const PLACES = [
     tour: "https://bayislandcruises.com/",
     tourLabel: "Tour: Bay Island Cruises",
     tourPhone: "+506 2235 3536" },
+  { id: "teatro", kind: "attraction", name: "Teatro Nacional", lat: 9.93316, lng: -84.07697,
+    summary: "Costa Rica's national theater in downtown San José, opened in 1897 and declared a National Monument.",
+    suits: "An hour in the capital",
+    website: "https://www.teatronacional.go.cr/",
+    maps: "https://www.google.com/maps/search/?api=1&query=Teatro%20Nacional%20de%20Costa%20Rica%2C%20San%20Jos%C3%A9%2C%20Costa%20Rica" },
+  { id: "basilica", kind: "attraction", name: "Basílica de los Ángeles", lat: 9.86409, lng: -83.91288,
+    summary: "The basilica in Cartago that holds La Negrita, the Virgin of the Angels, patron of Costa Rica. Pilgrims walk here from San José every 1 August.",
+    suits: "History and culture near San José",
+    maps: "https://www.google.com/maps/search/?api=1&query=Bas%C3%ADlica%20de%20Nuestra%20Se%C3%B1ora%20de%20los%20%C3%81ngeles%2C%20Cartago%2C%20Costa%20Rica" },
+  { id: "guayabo", kind: "attraction", name: "Guayabo National Monument", lat: 9.97144, lng: -83.69524,
+    summary: "Costa Rica's most important archaeological site, with pre-Hispanic stone structures near Turrialba occupied from about 1000 BC to 1400 AD.",
+    suits: "Archaeology and forest trails",
+    maps: "https://www.google.com/maps/search/?api=1&query=Monumento%20Nacional%20Guayabo%2C%20Costa%20Rica" },
+  { id: "ecotermales", kind: "attraction", name: "Ecotermales Fortuna", lat: 10.48401, lng: -84.67507,
+    summary: "Family-run natural hot springs near La Fortuna with five pools and a limited number of guests each day.",
+    suits: "A quiet soak after an Arenal day",
+    website: "https://ecotermalesfortuna.cr/",
+    maps: "https://www.google.com/maps/search/?api=1&query=Ecotermales%20Fortuna%2C%20Costa%20Rica" },
+  { id: "tabacon", kind: "attraction", name: "Tabacón Thermal Resort", lat: 10.48781, lng: -84.72299,
+    summary: "A hot-springs resort on the Tabacón river at the foot of Arenal volcano.",
+    suits: "Hot springs in a resort setting",
+    website: "https://www.tabacon.com/",
+    maps: "https://www.google.com/maps/search/?api=1&query=Tabac%C3%B3n%20Grand%20Spa%20Thermal%20Resort%2C%20Costa%20Rica" },
   { id: "puerto-viejo", kind: "beach", name: "Puerto Viejo", lat: 9.6559, lng: -82.7549,
     summary: "Caribbean beaches and food, with Cahuita just up the road.",
     suits: "A different coast and Caribbean food" },
@@ -130,6 +153,7 @@ const ICONS = {
   nature: '<path d="M10 10v.2A3 3 0 0 1 8.9 16H5a3 3 0 0 1-1-5.8V10a3 3 0 0 1 6 0Z"/><path d="M7 16v6"/><path d="M13 19v3"/><path d="M12 19h8.3a1 1 0 0 0 .7-1.7L18 14h.3a1 1 0 0 0 .7-1.7L16 9h.2a1 1 0 0 0 .8-1.7L13 3l-1.4 1.5"/>',
   stay: '<path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>',
   zipline: '<path d="M10 3h.01"/><path d="M14 2h.01"/><path d="m2 9 20-5"/><path d="M12 12V6.5"/><rect width="16" height="10" x="4" y="12" rx="3"/><path d="M9 12v5"/><path d="M15 12v5"/><path d="M4 17h16"/>',
+  attraction: '<line x1="3" x2="21" y1="22" y2="22"/><line x1="6" x2="6" y1="18" y2="11"/><line x1="10" x2="10" y1="18" y2="11"/><line x1="14" x2="14" y1="18" y2="11"/><line x1="18" x2="18" y1="18" y2="11"/><polygon points="12 2 20 7 4 7"/>',
   town: '<path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/>'
 };
 
@@ -140,7 +164,8 @@ const KIND_LABELS = {
   beach: "Beach",
   nature: "Nature or park",
   stay: "Place to stay",
-  zipline: "Zip line"
+  zipline: "Zip line",
+  attraction: "Culture or hot springs"
 };
 
 function glyph(kind, size) {

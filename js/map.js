@@ -57,6 +57,45 @@ function glyph(kind, size) {
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS[kind]}</svg>`;
 }
 
+const WMO = {
+  0: "Clear", 1: "Mostly clear", 2: "Partly cloudy", 3: "Overcast",
+  45: "Fog", 48: "Fog", 51: "Light drizzle", 53: "Drizzle", 55: "Heavy drizzle",
+  56: "Freezing drizzle", 57: "Freezing drizzle", 61: "Light rain", 63: "Rain", 65: "Heavy rain",
+  66: "Freezing rain", 67: "Freezing rain", 71: "Light snow", 73: "Snow", 75: "Heavy snow", 77: "Snow grains",
+  80: "Rain showers", 81: "Rain showers", 82: "Heavy showers", 85: "Snow showers", 86: "Snow showers",
+  95: "Thunderstorm", 96: "Thunderstorm with hail", 99: "Thunderstorm with hail"
+};
+
+let weatherRequest = null;
+
+function loadWeather() {
+  if (weatherRequest) return weatherRequest;
+  const params = new URLSearchParams({
+    latitude: PLACES.map((place) => place.lat).join(","),
+    longitude: PLACES.map((place) => place.lng).join(","),
+    current: "temperature_2m,weather_code,precipitation_probability",
+    timezone: "America/Costa_Rica"
+  });
+  weatherRequest = fetch(`https://api.open-meteo.com/v1/forecast?${params}`)
+    .then((response) => {
+      if (!response.ok) throw new Error(`Weather ${response.status}`);
+      return response.json();
+    })
+    .then((data) => (Array.isArray(data) ? data : [data]))
+    .catch(() => null);
+  return weatherRequest;
+}
+
+function weatherText(current) {
+  if (!current || typeof current.temperature_2m !== "number") return "";
+  const c = Math.round(current.temperature_2m);
+  const f = Math.round(current.temperature_2m * 9 / 5 + 32);
+  const parts = [`Now ${c}°C / ${f}°F`];
+  if (WMO[current.weather_code]) parts.push(WMO[current.weather_code]);
+  if (typeof current.precipitation_probability === "number") parts.push(`${current.precipitation_probability}% chance of rain`);
+  return parts.join(" · ");
+}
+
 const mapCanvas = document.querySelector("#place-map");
 
 if (mapCanvas && window.L) {
@@ -130,6 +169,10 @@ if (mapCanvas && window.L) {
       ...(place.address ? [el("p", "popup-address", place.address)] : []),
       el("p", `popup-status popup-status-${tone(place)}`, `${KIND_LABELS[place.kind]} · ${statusText(place)}`)
     );
+    const weather = el("p", "popup-weather");
+    weather.hidden = true;
+    weather.dataset.place = place.id;
+    root.append(weather);
     const links = el("p", "popup-links");
     if (place.phone) {
       const tel = el("a", "", place.phone);
@@ -153,7 +196,18 @@ if (mapCanvas && window.L) {
     const marker = L.marker([place.lat, place.lng], { icon: pinIcon(place, false), title: place.name })
       .addTo(map)
       .bindPopup(popupNode(place), { maxWidth: 280 });
-    marker.on("popupopen", () => selectPlace(place.id));
+    marker.on("popupopen", (event) => {
+      selectPlace(place.id);
+      const line = event.popup.getElement().querySelector(".popup-weather");
+      loadWeather().then((results) => {
+        const index = PLACES.indexOf(place);
+        const text = results && results[index] ? weatherText(results[index].current) : "";
+        if (!line || !text) return;
+        line.textContent = text;
+        line.hidden = false;
+        event.popup.update();
+      });
+    });
     marker.on("popupclose", () => selectPlace(null));
     markers.set(place.id, marker);
   });

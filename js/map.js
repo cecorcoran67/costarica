@@ -1,35 +1,55 @@
 const PLACES = [
-  { id: "sjo", name: "SJO · Juan Santamaría", lat: 9.9939, lng: -84.2088, loop: null,
+  { id: "sjo", kind: "airport", name: "SJO · Juan Santamaría", lat: 9.9939, lng: -84.2088, loop: null,
     summary: "The main airport, in Alajuela, about 20 minutes from San José. Not downtown.",
     suits: "Most international flights" },
-  { id: "lir", name: "LIR · Liberia", lat: 10.5933, lng: -85.5444, loop: null,
+  { id: "lir", kind: "airport", name: "LIR · Liberia", lat: 10.5933, lng: -85.5444, loop: null,
     summary: "Daniel Oduber Quirós International Airport, closer to the Pacific northwest beaches.",
     suits: "Gateway to Guanacaste" },
-  { id: "sanjose", name: "Central Valley", lat: 9.9281, lng: -84.0907, loop: true,
+  { id: "sanjose", kind: "town", name: "Central Valley", lat: 9.9281, lng: -84.0907, loop: true,
     summary: "San José and the coffee highlands, with Poás and Irazú nearby.",
     suits: "Arrival, departure, and coffee" },
-  { id: "fortuna", name: "Arenal / La Fortuna", lat: 10.4716, lng: -84.6455, loop: true,
+  { id: "fortuna", kind: "nature", name: "Arenal / La Fortuna", lat: 10.4716, lng: -84.6455, loop: true,
     summary: "The viewpoint, hanging bridges, the waterfall, and hot springs.",
     suits: "A first volcano and an easy base" },
-  { id: "monteverde", name: "Monteverde", lat: 10.3085, lng: -84.8203, loop: true,
+  { id: "monteverde", kind: "nature", name: "Monteverde", lat: 10.3085, lng: -84.8203, loop: true,
     summary: "Cloud forest on the continental divide.",
     suits: "Forest, canopy walks, and cooler nights" },
-  { id: "manuel", name: "Manuel Antonio", lat: 9.3923, lng: -84.1398, loop: true,
+  { id: "manuel", kind: "nature", name: "Manuel Antonio", lat: 9.3923, lng: -84.1398, loop: true,
     summary: "Park trails, monkeys, sloths, and a swimable beach.",
     suits: "Wildlife and beach in one stop" },
-  { id: "guanacaste", name: "Guanacaste", lat: 10.2995, lng: -85.8414, loop: false,
+  { id: "guanacaste", kind: "beach", name: "Guanacaste", lat: 10.2995, lng: -85.8414, loop: false,
     summary: "Tamarindo, with Nosara and the Papagayo gulf along the same coast.",
     suits: "Sun, swimming, and surf" },
-  { id: "puerto-viejo", name: "Puerto Viejo", lat: 9.6559, lng: -82.7549, loop: false,
+  { id: "puerto-viejo", kind: "beach", name: "Puerto Viejo", lat: 9.6559, lng: -82.7549, loop: false,
     summary: "Caribbean beaches and food, with Cahuita just up the road.",
     suits: "A different coast and Caribbean food" },
-  { id: "tortuguero", name: "Tortuguero", lat: 10.5428, lng: -83.5024, loop: false,
+  { id: "tortuguero", kind: "nature", name: "Tortuguero", lat: 10.5428, lng: -83.5024, loop: false,
     summary: "Reached by boat or a small plane, not by a coastal drive.",
     suits: "Canals and turtles in season" },
-  { id: "osa", name: "Osa Peninsula", lat: 8.538, lng: -83.3054, loop: false,
+  { id: "osa", kind: "nature", name: "Osa Peninsula", lat: 8.538, lng: -83.3054, loop: false,
     summary: "Puerto Jiménez, the usual gateway to Corcovado.",
     suits: "A wilder trip, with extra days" }
 ];
+
+const ICONS = {
+  airport: '<path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/>',
+  restaurant: '<path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/>',
+  beach: '<path d="M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/>',
+  nature: '<path d="M10 10v.2A3 3 0 0 1 8.9 16H5a3 3 0 0 1-1-5.8V10a3 3 0 0 1 6 0Z"/><path d="M7 16v6"/><path d="M13 19v3"/><path d="M12 19h8.3a1 1 0 0 0 .7-1.7L18 14h.3a1 1 0 0 0 .7-1.7L16 9h.2a1 1 0 0 0 .8-1.7L13 3l-1.4 1.5"/>',
+  town: '<path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/>'
+};
+
+const KIND_LABELS = {
+  airport: "Airport",
+  restaurant: "Restaurant",
+  town: "Town or region",
+  beach: "Beach",
+  nature: "Nature or park"
+};
+
+function glyph(kind, size) {
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS[kind]}</svg>`;
+}
 
 const mapCanvas = document.querySelector("#place-map");
 
@@ -57,19 +77,35 @@ if (mapCanvas && window.L) {
     return place.maps || `https://www.google.com/maps/search/?api=1&query=${place.lat},${place.lng}`;
   }
 
+  function tone(place) {
+    if (place.loop === true) return "loop";
+    if (place.loop === false) return "extra";
+    return "gateway";
+  }
+
   function pinIcon(place, active) {
-    const cls = ["place-pin"];
-    if (place.loop === true) cls.push("place-pin-loop");
-    if (place.loop === null) cls.push("place-pin-airport");
-    if (active) cls.push("place-pin-active");
     return L.divIcon({
       className: "place-marker",
-      html: `<span class="${cls.join(" ")}"></span>`,
-      iconSize: [24, 24],
-      iconAnchor: [12, 12],
-      popupAnchor: [0, -12]
+      html: `<span class="pin pin-${tone(place)}${active ? " pin-active" : ""}">${glyph(place.kind, 18)}</span>`,
+      iconSize: [34, 34],
+      iconAnchor: [17, 17],
+      popupAnchor: [0, -18]
     });
   }
+
+  const legend = L.control({ position: "bottomleft" });
+  legend.onAdd = () => {
+    const box = L.DomUtil.create("div", "map-key");
+    const kinds = Object.keys(ICONS).map((kind) =>
+      `<li><span class="pin pin-key">${glyph(kind, 14)}</span>${KIND_LABELS[kind]}</li>`).join("");
+    box.innerHTML = `<ul>${kinds}</ul><ul>
+      <li><span class="swatch swatch-loop"></span>On the 8-day loop</li>
+      <li><span class="swatch swatch-extra"></span>Worth extra days</li>
+      <li><span class="swatch swatch-gateway"></span>Airport gateway</li></ul>`;
+    L.DomEvent.disableClickPropagation(box);
+    return box;
+  };
+  legend.addTo(map);
 
   function el(tag, className, text) {
     const node = document.createElement(tag);
@@ -84,7 +120,7 @@ if (mapCanvas && window.L) {
       el("strong", "popup-title", place.name),
       el("p", "", place.summary),
       el("p", "popup-suits", place.suits),
-      el("p", "popup-status", statusText(place))
+      el("p", `popup-status popup-status-${tone(place)}`, `${KIND_LABELS[place.kind]} · ${statusText(place)}`)
     );
     const links = el("p", "popup-links");
     if (place.phone) {

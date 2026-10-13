@@ -520,18 +520,15 @@ a:hover {
   transition: transform 0.15s ease;
 }
 
-.pin-loop {
-  background: var(--amber);
-  color: var(--canopy-deep);
-}
+.pin-kind-airport { background: var(--canopy-deep); }
+.pin-kind-restaurant { background: #9a3f1f; }
+.pin-kind-town { background: #4a4a6a; }
+.pin-kind-beach { background: var(--teal); }
+.pin-kind-nature { background: #2f6b2f; }
+.pin-kind-zipline { background: var(--amber-ink); }
+.pin-kind-stay { background: #6b3552; }
 
-.pin-extra {
-  background: var(--teal);
-  color: var(--paper);
-}
-
-.pin-gateway {
-  background: var(--canopy-deep);
+.pin[class*="pin-kind-"] {
   color: var(--paper);
 }
 
@@ -587,11 +584,7 @@ a:hover {
 
 .key-toggle:has(input:not(:checked)) .key-label,
 .key-toggle:has(input:not(:checked)) .pin-key,
-.key-toggle:has(input:not(:checked)) .swatch {
-  opacity: 0.45;
-}
-
-.key-label {
+.key-toggle:has(input:not(:checked)) .key-label {
   flex: 1;
 }
 
@@ -662,23 +655,9 @@ a:hover {
   height: 22px;
   border: 0;
   box-shadow: none;
-  background: var(--sand-deep);
-  color: var(--canopy-deep);
 }
 
-.swatch {
-  width: 14px;
-  height: 14px;
-  margin-inline: 4px;
-  border-radius: var(--radius-pill);
-}
 
-.swatch-loop { background: var(--amber); }
-.swatch-extra { background: var(--teal); }
-.swatch-gateway { background: var(--canopy-deep); }
-
-.popup-status-loop { color: var(--amber-ink); }
-.popup-status-extra { color: var(--teal); }
 
 @media (max-width: 40rem) {
   .map-key {

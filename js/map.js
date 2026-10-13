@@ -1,126 +1,126 @@
 const PLACES = [
-  { id: "sjo", kind: "airport", name: "SJO · Juan Santamaría", lat: 9.9939, lng: -84.2088, loop: null,
+  { id: "sjo", kind: "airport", name: "SJO · Juan Santamaría", lat: 9.9939, lng: -84.2088,
     summary: "The main airport, in Alajuela, about 20 minutes from San José. Not downtown.",
     suits: "Most international flights" },
-  { id: "lir", kind: "airport", name: "LIR · Liberia", lat: 10.5933, lng: -85.5444, loop: null,
+  { id: "lir", kind: "airport", name: "LIR · Liberia", lat: 10.5933, lng: -85.5444,
     summary: "Daniel Oduber Quirós International Airport, closer to the Pacific northwest beaches.",
     suits: "Gateway to Guanacaste" },
-  { id: "sanjose", kind: "town", name: "Central Valley", lat: 9.9281, lng: -84.0907, loop: true,
+  { id: "sanjose", kind: "town", name: "Central Valley", lat: 9.9281, lng: -84.0907,
     summary: "San José and the coffee highlands, with Poás and Irazú nearby.",
     suits: "Arrival, departure, and coffee" },
-  { id: "freddo-fresas", kind: "restaurant", name: "Restaurante Freddo Fresas", lat: 10.15721, lng: -84.19561, loop: false, status: "Not on the 8-day loop",
+  { id: "freddo-fresas", kind: "restaurant", name: "Restaurante Freddo Fresas", lat: 10.15721, lng: -84.19561,
     summary: "A Costa Rican food stop known for strawberries, on the road up to Poás volcano.",
     suits: "A stop on the way to Poás",
     address: "Carretera Principal al Volcán Poás, 200 m norte del cementerio de Fraijanes, Fraijanes, Alajuela",
     phone: "+506 2482 2800",
     maps: "https://www.google.com/maps/place/?q=place_id:ChIJUYSvSHv0oI8RLmXjPu7HF1Q" },
-  { id: "dinoland", kind: "nature", name: "Dinoland", lat: 10.23772, lng: -84.27905, loop: false, status: "Not on the 8-day loop",
+  { id: "dinoland", kind: "nature", name: "Dinoland", lat: 10.23772, lng: -84.27905,
     summary: "A family theme park with more than 25 life-size animatronic dinosaurs on a forest trail, plus the turquoise Río Agrio waterfall.",
     suits: "Families with kids",
     address: "4 km north of the Bajos del Toro sports field, Toro Amarillo, Sarchí, Alajuela",
     phone: "+506 8887 0310",
     website: "https://dinolandcostarica.com/en/",
     maps: "https://maps.app.goo.gl/oxWCEdKS8Tu86E4V9" },
-  { id: "alsacia", kind: "nature", name: "Hacienda Alsacia", lat: 10.10019, lng: -84.19495, loop: false, status: "Not on the 8-day loop",
+  { id: "alsacia", kind: "nature", name: "Hacienda Alsacia", lat: 10.10019, lng: -84.19495,
     summary: "Starbucks' working coffee farm and visitor center on the slopes of Poás, with guided coffee tours and a café looking out over the mountains.",
     suits: "Coffee lovers on the way to Poás",
     address: "Dulce Nombre de San Isidro, Alajuela, 12 km north of the Alajuela courthouse on the road to Poás volcano",
     phone: "+506 2103 4282",
     website: "https://www.starbuckscoffeefarm.com/",
     maps: "https://www.google.com/maps/search/?api=1&query=4R24%2B32F%20Dulce%20Nombre%2C%20Alajuela%2C%20Costa%20Rica" },
-  { id: "fortuna", kind: "nature", name: "Arenal / La Fortuna", lat: 10.4716, lng: -84.6455, loop: true,
+  { id: "fortuna", kind: "nature", name: "Arenal / La Fortuna", lat: 10.4716, lng: -84.6455,
     summary: "The viewpoint, hanging bridges, the waterfall, and hot springs.",
     suits: "A first volcano and an easy base" },
-  { id: "monteverde", kind: "nature", name: "Monteverde", lat: 10.3085, lng: -84.8203, loop: true,
+  { id: "monteverde", kind: "nature", name: "Monteverde", lat: 10.3085, lng: -84.8203,
     summary: "Cloud forest on the continental divide.",
     suits: "Forest, canopy walks, and cooler nights" },
-  { id: "manuel", kind: "nature", name: "Manuel Antonio", lat: 9.3923, lng: -84.1398, loop: true,
+  { id: "manuel", kind: "nature", name: "Manuel Antonio", lat: 9.3923, lng: -84.1398,
     summary: "Park trails, monkeys, sloths, and a swimable beach.",
     suits: "Wildlife and beach in one stop" },
-  { id: "sky-arenal", kind: "zipline", name: "Sky Adventures Arenal Park", lat: 10.42477, lng: -84.73587, status: "Not on the 8-day loop", loop: false,
+  { id: "sky-arenal", kind: "zipline", name: "Sky Adventures Arenal Park", lat: 10.42477, lng: -84.73587,
     summary: "Ziplines that run mountain to mountain on the edge of Arenal, with hanging bridges and forest walks in the same park.",
     suits: "Big volcano views from the line",
     phone: "+506 2479 4100",
     website: "https://skyadventures.travel/" },
-  { id: "ecoglide", kind: "zipline", name: "Ecoglide Arenal Park", lat: 10.47527, lng: -84.67695, status: "Not on the 8-day loop", loop: false,
+  { id: "ecoglide", kind: "zipline", name: "Ecoglide Arenal Park", lat: 10.47527, lng: -84.67695,
     summary: "An adventure and nature park by Arenal volcano with canopy tours and nature walks.",
     suits: "A zip line close to La Fortuna town",
     phone: "+506 2479 7120",
     website: "https://www.arenalecoglide.com/" },
-  { id: "selvatura", kind: "zipline", name: "Selvatura Park", lat: 10.34243, lng: -84.79861, status: "Not on the 8-day loop", loop: false,
+  { id: "selvatura", kind: "zipline", name: "Selvatura Park", lat: 10.34243, lng: -84.79861,
     summary: "Thirteen ziplines and a Tarzan swing over the Monteverde cloud forest, with hanging bridges and a sloth habitat in the park.",
     suits: "Zip lining through cloud forest",
     phone: "+506 4001 7895",
     website: "https://www.selvatura.com/",
     maps: "https://maps.app.goo.gl/2ZTQ8sXrScv7yXqf6" },
-  { id: "diamante", kind: "zipline", name: "Diamante Eco Adventure Park", lat: 10.52221, lng: -85.74478, status: "Not on the 8-day loop", loop: false,
+  { id: "diamante", kind: "zipline", name: "Diamante Eco Adventure Park", lat: 10.52221, lng: -85.74478,
     summary: "A Guanacaste adventure park on the coast with ziplines, including a Superman line, plus animals and ATV tours.",
     suits: "A full adventure day near Playas del Coco",
     phone: "+506 2105 5200",
     website: "https://diamanteecoadventurepark.com/",
     maps: "https://maps.app.goo.gl/JJyAovTFh4Qsfpru7" },
-  { id: "guachipelin", kind: "zipline", name: "Hacienda Guachipelín", lat: 10.75208, lng: -85.37965, status: "Not on the 8-day loop", loop: false,
+  { id: "guachipelin", kind: "zipline", name: "Hacienda Guachipelín", lat: 10.75208, lng: -85.37965,
     summary: "A hotel and ranch at the foot of Rincón de la Vieja with a canopy tour of ziplines, rappel, rock climbing, a swing and bridges, plus hot springs.",
     suits: "Ziplines on a Rincón de la Vieja day",
     phone: "+506 2690 2900",
     website: "https://www.guachipelin.com/" },
-  { id: "guanacaste", kind: "beach", name: "Guanacaste", lat: 10.2995, lng: -85.8414, loop: false,
+  { id: "guanacaste", kind: "beach", name: "Guanacaste", lat: 10.2995, lng: -85.8414,
     summary: "Tamarindo, with Nosara and the Papagayo gulf along the same coast.",
     suits: "Sun, swimming, and surf" },
-  { id: "sol-y-luna", kind: "stay", name: "Casas Sol y Luna", lat: 10.5315, lng: -85.7049, loop: false, status: "Not on the 8-day loop",
+  { id: "sol-y-luna", kind: "stay", name: "Casas Sol y Luna", lat: 10.5315, lng: -85.7049,
     summary: "Two side-by-side private homes with 6 bedrooms and 2 pools between them, about 10 minutes from Playas del Coco and 40 minutes from Liberia airport (LIR).",
     suits: "Groups and families traveling together",
     address: "Coco, Guanacaste (approximate location)",
     website: "https://www.airbnb.com/rooms/1649298342055708571",
     websiteLabel: "View on Airbnb" },
-  { id: "jaco-condo", kind: "stay", name: "Oceanfront Corner Condo, Jacó", lat: 9.6168, lng: -84.6324, loop: false, status: "Not on the 8-day loop",
+  { id: "jaco-condo", kind: "stay", name: "Oceanfront Corner Condo, Jacó", lat: 9.6168, lng: -84.6324,
     summary: "A beachfront condo in the heart of Jacó with 3 bedrooms, 3 private balconies and ocean views, a walk from restaurants and shops.",
     suits: "Families or groups who want the beach at the door",
     address: "Jacó, Puntarenas (approximate location)",
     website: "https://www.airbnb.com/rooms/1148016778896940364",
     websiteLabel: "View on Airbnb" },
-  { id: "conchal", kind: "beach", name: "Playa Conchal", lat: 10.4015, lng: -85.80554, loop: false, status: "Not on the 8-day loop",
+  { id: "conchal", kind: "beach", name: "Playa Conchal", lat: 10.4015, lng: -85.80554,
     summary: "Sand made of crushed shells and clear turquoise water, with calm swimming and the best snorkeling around the rocky points.",
     suits: "Swimming and snorkeling" },
-  { id: "flamingo", kind: "beach", name: "Playa Flamingo", lat: 10.43544, lng: -85.79253, loop: false, status: "Not on the 8-day loop",
+  { id: "flamingo", kind: "beach", name: "Playa Flamingo", lat: 10.43544, lng: -85.79253,
     summary: "A long white-sand beach, mapped as Playa Blanca, with easy swimming that is calmest in the morning.",
     suits: "Swimming" },
-  { id: "hermosa-gte", kind: "beach", name: "Playa Hermosa (Guanacaste)", lat: 10.57561, lng: -85.6784, loop: false, status: "Not on the 8-day loop",
+  { id: "hermosa-gte", kind: "beach", name: "Playa Hermosa (Guanacaste)", lat: 10.57561, lng: -85.6784,
     summary: "A sheltered grey-sand bay near Liberia with gentle water, snorkeling off the rocky ends, and paddleboarding. Not the Jacó surf beach of the same name.",
     suits: "Families, calm swimming, snorkeling" },
-  { id: "samara", kind: "beach", name: "Playa Sámara", lat: 9.87385, lng: -85.5119, loop: false, status: "Not on the 8-day loop",
+  { id: "samara", kind: "beach", name: "Playa Sámara", lat: 9.87385, lng: -85.5119,
     summary: "A bay protected by an offshore reef, calm and shallow in the middle. Rips run by the western rocks and the eastern river mouth.",
     suits: "Families and safe swimming" },
-  { id: "santa-teresa", kind: "beach", name: "Playa Santa Teresa", lat: 9.64381, lng: -85.17035, loop: false, status: "Not on the 8-day loop",
+  { id: "santa-teresa", kind: "beach", name: "Playa Santa Teresa", lat: 9.64381, lng: -85.17035,
     summary: "A long, exposed Pacific beach with consistent beach-break surf. Shifting sandbars and rips make it a poor swimming beach.",
     suits: "Surfing, intermediate and up" },
-  { id: "montezuma", kind: "beach", name: "Playa Montezuma", lat: 9.6566, lng: -85.0653, loop: false, status: "Not on the 8-day loop",
+  { id: "montezuma", kind: "beach", name: "Playa Montezuma", lat: 9.6566, lng: -85.0653,
     summary: "A rocky, palm-backed beach in front of the village. Waves and rips make it better for walking, with a calmer cove south of town and waterfalls nearby.",
     suits: "Walks, waterfalls, beginner surf nearby" },
-  { id: "manuel-beach", kind: "beach", name: "Playa Manuel Antonio", lat: 9.38088, lng: -84.1456, loop: false, status: "Not on the 8-day loop",
+  { id: "manuel-beach", kind: "beach", name: "Playa Manuel Antonio", lat: 9.38088, lng: -84.1456,
     summary: "A sheltered cove inside Manuel Antonio National Park, usually calm for swimming, with snorkeling near the rocky ends.",
     suits: "Swimming with wildlife around" },
-  { id: "ballena", kind: "beach", name: "Marino Ballena (Whale's Tail)", lat: 9.13048, lng: -83.7485, loop: false, status: "Not on the 8-day loop",
+  { id: "ballena", kind: "beach", name: "Marino Ballena (Whale's Tail)", lat: 9.13048, lng: -83.7485,
     summary: "A marine national park at Uvita whose Whale's Tail sandbar can be walked at low tide. The protected water by Punta Uvita is the calmest swim in the area.",
     suits: "Low-tide walks, calm swimming, whales in season" },
-  { id: "punta-uva", kind: "beach", name: "Punta Uva", lat: 9.63876, lng: -82.69354, loop: false, status: "Not on the 8-day loop",
+  { id: "punta-uva", kind: "beach", name: "Punta Uva", lat: 9.63876, lng: -82.69354,
     summary: "A protected Caribbean bay south of Puerto Viejo with calm water and reef snorkeling on flat, clear mornings.",
     suits: "Swimming and snorkeling" },
-  { id: "tortuga", kind: "beach", name: "Isla Tortuga", lat: 9.77326, lng: -84.89548, loop: false, status: "Not on the 8-day loop",
+  { id: "tortuga", kind: "beach", name: "Isla Tortuga", lat: 9.77326, lng: -84.89548,
     summary: "An island in the Gulf of Nicoya, kept as protected forest, with a white-sand beach and turquoise water that is good for swimming. Reached by day cruise from Puntarenas.",
     suits: "A boat day with swimming and snorkeling",
     tour: "https://bayislandcruises.com/",
     tourLabel: "Tour: Bay Island Cruises",
     tourPhone: "+506 2235 3536" },
-  { id: "puerto-viejo", kind: "beach", name: "Puerto Viejo", lat: 9.6559, lng: -82.7549, loop: false,
+  { id: "puerto-viejo", kind: "beach", name: "Puerto Viejo", lat: 9.6559, lng: -82.7549,
     summary: "Caribbean beaches and food, with Cahuita just up the road.",
     suits: "A different coast and Caribbean food" },
-  { id: "tortuguero", kind: "nature", name: "Tortuguero", lat: 10.5428, lng: -83.5024, loop: false,
+  { id: "tortuguero", kind: "nature", name: "Tortuguero", lat: 10.5428, lng: -83.5024,
     summary: "Reached by boat or a small plane, not by a coastal drive.",
     suits: "Canals and turtles in season" },
-  { id: "osa", kind: "nature", name: "Osa Peninsula", lat: 8.538, lng: -83.3054, loop: false,
+  { id: "osa", kind: "nature", name: "Osa Peninsula", lat: 8.538, lng: -83.3054,
     summary: "Puerto Jiménez, the usual gateway to Corcovado.",
-    suits: "A wilder trip, with extra days" }
+    suits: "A wilder trip, with time to spare" }
 ];
 
 const ICONS = {
@@ -202,27 +202,14 @@ if (mapCanvas && window.L) {
 
   const markers = new Map();
 
-  function statusText(place) {
-    if (place.status) return place.status;
-    if (place.loop === true) return "On the 8-day loop";
-    if (place.loop === false) return "Worth extra days";
-    return "International airport";
-  }
-
   function mapsUrl(place) {
     return place.maps || `https://www.google.com/maps/search/?api=1&query=${place.lat},${place.lng}`;
-  }
-
-  function tone(place) {
-    if (place.loop === true) return "loop";
-    if (place.loop === false) return "extra";
-    return "gateway";
   }
 
   function pinIcon(place, active) {
     return L.divIcon({
       className: "place-marker",
-      html: `<span class="pin pin-${tone(place)}${active ? " pin-active" : ""}">${glyph(place.kind, 18)}</span>`,
+      html: `<span class="pin pin-kind-${place.kind}${active ? " pin-active" : ""}">${glyph(place.kind, 18)}</span>`,
       iconSize: [34, 34],
       iconAnchor: [17, 17],
       popupAnchor: [0, -18]
@@ -230,7 +217,6 @@ if (mapCanvas && window.L) {
   }
 
   const activeKinds = new Set(Object.keys(ICONS));
-  const activeTones = new Set(["loop", "extra", "gateway"]);
   let applyFilter = () => {};
 
   const legend = L.control({ position: "bottomleft" });
@@ -239,27 +225,19 @@ if (mapCanvas && window.L) {
     const count = (test) => PLACES.filter(test).length;
     const kinds = Object.keys(ICONS).map((kind) => `<li><label class="key-toggle">
         <input type="checkbox" name="kind" value="${kind}" checked>
-        <span class="pin pin-key">${glyph(kind, 14)}</span>
+        <span class="pin pin-key pin-kind-${kind}">${glyph(kind, 14)}</span>
         <span class="key-label">${KIND_LABELS[kind]}</span>
         <span class="key-count">${count((p) => p.kind === kind)}</span></label></li>`).join("");
-    const tones = [["loop", "On the 8-day loop"], ["extra", "Worth extra days"], ["gateway", "Airport gateway"]]
-      .map(([t, label]) => `<li><label class="key-toggle">
-        <input type="checkbox" name="tone" value="${t}" checked>
-        <span class="swatch swatch-${t}"></span>
-        <span class="key-label">${label}</span>
-        <span class="key-count">${count((p) => tone(p) === t)}</span></label></li>`).join("");
     box.innerHTML = `<details${window.matchMedia("(min-width: 48rem)").matches ? " open" : ""}>
       <summary>Filter places</summary>
       <div class="key-quick"><button type="button" data-all="on">All</button><button type="button" data-all="off">None</button></div>
       <fieldset><legend class="sr-only">Kinds of place</legend><ul>${kinds}</ul></fieldset>
-      <fieldset><legend class="sr-only">Loop or extra days</legend><ul>${tones}</ul></fieldset>
       <p class="key-status" aria-live="polite"></p></details>`;
     box.addEventListener("change", (event) => {
       const input = event.target;
       if (!(input instanceof HTMLInputElement)) return;
-      const set = input.name === "kind" ? activeKinds : activeTones;
-      if (input.checked) set.add(input.value);
-      else set.delete(input.value);
+      if (input.checked) activeKinds.add(input.value);
+      else activeKinds.delete(input.value);
       applyFilter();
     });
     box.addEventListener("click", (event) => {
@@ -270,10 +248,6 @@ if (mapCanvas && window.L) {
         input.checked = on;
         if (on) activeKinds.add(input.value);
         else activeKinds.delete(input.value);
-      });
-      if (on) box.querySelectorAll('input[name="tone"]').forEach((input) => {
-        input.checked = true;
-        activeTones.add(input.value);
       });
       applyFilter();
     });
@@ -297,7 +271,7 @@ if (mapCanvas && window.L) {
       el("p", "", place.summary),
       el("p", "popup-suits", place.suits),
       ...(place.address ? [el("p", "popup-address", place.address)] : []),
-      el("p", `popup-status popup-status-${tone(place)}`, `${KIND_LABELS[place.kind]} · ${statusText(place)}`)
+      el("p", "popup-status", KIND_LABELS[place.kind])
     );
     const weather = el("p", "popup-weather");
     weather.hidden = true;
@@ -381,7 +355,7 @@ if (mapCanvas && window.L) {
     let shown = 0;
     PLACES.forEach((place) => {
       const marker = markers.get(place.id);
-      const visible = activeKinds.has(place.kind) && activeTones.has(tone(place));
+      const visible = activeKinds.has(place.kind);
       if (visible) shown += 1;
       if (visible && !layer.hasLayer(marker)) layer.addLayer(marker);
       if (!visible && layer.hasLayer(marker)) {

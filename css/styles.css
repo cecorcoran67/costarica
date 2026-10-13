@@ -535,6 +535,14 @@ a:hover {
   color: var(--paper);
 }
 
+.pin-cluster {
+  background: var(--paper);
+  color: var(--canopy-deep);
+  border-color: var(--canopy-deep);
+  font-weight: 700;
+  font-size: var(--text-sm);
+}
+
 .pin-active {
   transform: scale(1.25);
   box-shadow: 0 0 0 3px var(--canopy-deep), 0 2px 8px rgb(15 42 31 / 0.45);
@@ -548,6 +556,15 @@ a:hover {
   font-size: var(--text-xs);
   line-height: 1.3;
   color: var(--ink);
+}
+
+.map-key summary {
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.map-key details[open] summary {
+  margin-bottom: var(--space-xs);
 }
 
 .map-key ul {

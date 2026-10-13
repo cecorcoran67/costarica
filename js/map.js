@@ -172,10 +172,10 @@ if (mapCanvas && window.L) {
     const box = L.DomUtil.create("div", "map-key");
     const kinds = Object.keys(ICONS).map((kind) =>
       `<li><span class="pin pin-key">${glyph(kind, 14)}</span>${KIND_LABELS[kind]}</li>`).join("");
-    box.innerHTML = `<ul>${kinds}</ul><ul>
+    box.innerHTML = `<details${window.matchMedia("(min-width: 48rem)").matches ? " open" : ""}><summary>Map key</summary><ul>${kinds}</ul><ul>
       <li><span class="swatch swatch-loop"></span>On the 8-day loop</li>
       <li><span class="swatch swatch-extra"></span>Worth extra days</li>
-      <li><span class="swatch swatch-gateway"></span>Airport gateway</li></ul>`;
+      <li><span class="swatch swatch-gateway"></span>Airport gateway</li></ul></details>`;
     L.DomEvent.disableClickPropagation(box);
     return box;
   };
@@ -227,9 +227,25 @@ if (mapCanvas && window.L) {
     PLACES.forEach((item) => markers.get(item.id).setIcon(pinIcon(item, item.id === id)));
   }
 
+  const layer = L.markerClusterGroup
+    ? L.markerClusterGroup({
+        maxClusterRadius: 36,
+        showCoverageOnHover: false,
+        spiderfyOnMaxZoom: true,
+        iconCreateFunction: (cluster) => L.divIcon({
+          className: "place-marker",
+          html: `<span class="pin pin-cluster">${cluster.getChildCount()}</span>`,
+          iconSize: [34, 34],
+          iconAnchor: [17, 17]
+        })
+      })
+    : L.layerGroup();
+  layer.addTo(map);
+  window.placeMap = map;
+
   PLACES.forEach((place) => {
     const marker = L.marker([place.lat, place.lng], { icon: pinIcon(place, false), title: place.name })
-      .addTo(map)
+      .addTo(layer)
       .bindPopup(popupNode(place), { maxWidth: 280 });
     marker.on("popupopen", (event) => {
       selectPlace(place.id);

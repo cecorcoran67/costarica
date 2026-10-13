@@ -229,16 +229,56 @@ if (mapCanvas && window.L) {
     });
   }
 
+  const activeKinds = new Set(Object.keys(ICONS));
+  const activeTones = new Set(["loop", "extra", "gateway"]);
+  let applyFilter = () => {};
+
   const legend = L.control({ position: "bottomleft" });
   legend.onAdd = () => {
     const box = L.DomUtil.create("div", "map-key");
-    const kinds = Object.keys(ICONS).map((kind) =>
-      `<li><span class="pin pin-key">${glyph(kind, 14)}</span>${KIND_LABELS[kind]}</li>`).join("");
-    box.innerHTML = `<details${window.matchMedia("(min-width: 48rem)").matches ? " open" : ""}><summary>Map key</summary><ul>${kinds}</ul><ul>
-      <li><span class="swatch swatch-loop"></span>On the 8-day loop</li>
-      <li><span class="swatch swatch-extra"></span>Worth extra days</li>
-      <li><span class="swatch swatch-gateway"></span>Airport gateway</li></ul></details>`;
+    const count = (test) => PLACES.filter(test).length;
+    const kinds = Object.keys(ICONS).map((kind) => `<li><label class="key-toggle">
+        <input type="checkbox" name="kind" value="${kind}" checked>
+        <span class="pin pin-key">${glyph(kind, 14)}</span>
+        <span class="key-label">${KIND_LABELS[kind]}</span>
+        <span class="key-count">${count((p) => p.kind === kind)}</span></label></li>`).join("");
+    const tones = [["loop", "On the 8-day loop"], ["extra", "Worth extra days"], ["gateway", "Airport gateway"]]
+      .map(([t, label]) => `<li><label class="key-toggle">
+        <input type="checkbox" name="tone" value="${t}" checked>
+        <span class="swatch swatch-${t}"></span>
+        <span class="key-label">${label}</span>
+        <span class="key-count">${count((p) => tone(p) === t)}</span></label></li>`).join("");
+    box.innerHTML = `<details${window.matchMedia("(min-width: 48rem)").matches ? " open" : ""}>
+      <summary>Filter places</summary>
+      <div class="key-quick"><button type="button" data-all="on">All</button><button type="button" data-all="off">None</button></div>
+      <fieldset><legend class="sr-only">Kinds of place</legend><ul>${kinds}</ul></fieldset>
+      <fieldset><legend class="sr-only">Loop or extra days</legend><ul>${tones}</ul></fieldset>
+      <p class="key-status" aria-live="polite"></p></details>`;
+    box.addEventListener("change", (event) => {
+      const input = event.target;
+      if (!(input instanceof HTMLInputElement)) return;
+      const set = input.name === "kind" ? activeKinds : activeTones;
+      if (input.checked) set.add(input.value);
+      else set.delete(input.value);
+      applyFilter();
+    });
+    box.addEventListener("click", (event) => {
+      const button = event.target.closest("button[data-all]");
+      if (!button) return;
+      const on = button.dataset.all === "on";
+      box.querySelectorAll('input[name="kind"]').forEach((input) => {
+        input.checked = on;
+        if (on) activeKinds.add(input.value);
+        else activeKinds.delete(input.value);
+      });
+      if (on) box.querySelectorAll('input[name="tone"]').forEach((input) => {
+        input.checked = true;
+        activeTones.add(input.value);
+      });
+      applyFilter();
+    });
     L.DomEvent.disableClickPropagation(box);
+    L.DomEvent.disableScrollPropagation(box);
     return box;
   };
   legend.addTo(map);
@@ -336,6 +376,23 @@ if (mapCanvas && window.L) {
     marker.on("popupclose", () => selectPlace(null));
     markers.set(place.id, marker);
   });
+
+  applyFilter = () => {
+    let shown = 0;
+    PLACES.forEach((place) => {
+      const marker = markers.get(place.id);
+      const visible = activeKinds.has(place.kind) && activeTones.has(tone(place));
+      if (visible) shown += 1;
+      if (visible && !layer.hasLayer(marker)) layer.addLayer(marker);
+      if (!visible && layer.hasLayer(marker)) {
+        if (marker.isPopupOpen()) marker.closePopup();
+        layer.removeLayer(marker);
+      }
+    });
+    const status = mapCanvas.querySelector(".key-status");
+    if (status) status.textContent = `Showing ${shown} of ${PLACES.length} places`;
+  };
+  applyFilter();
 
   const bounds = L.latLngBounds(PLACES.map((place) => [place.lat, place.lng]));
 

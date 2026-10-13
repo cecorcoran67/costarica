@@ -693,8 +693,9 @@ a:hover {
   }
 
   .map-key summary {
-    min-height: 0;
-    padding-block: 0.7rem;
+    min-height: 44px;
+    padding-block: 0.75rem;
+    box-sizing: border-box;
   }
 }
 

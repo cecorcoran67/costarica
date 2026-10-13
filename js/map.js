@@ -33,6 +33,12 @@ const PLACES = [
   { id: "guanacaste", kind: "beach", name: "Guanacaste", lat: 10.2995, lng: -85.8414, loop: false,
     summary: "Tamarindo, with Nosara and the Papagayo gulf along the same coast.",
     suits: "Sun, swimming, and surf" },
+  { id: "sol-y-luna", kind: "stay", name: "Casas Sol y Luna", lat: 10.5315, lng: -85.7049, loop: false, status: "Not on the 8-day loop",
+    summary: "Two side-by-side private homes with 6 bedrooms and 2 pools between them, about 10 minutes from Playas del Coco and 40 minutes from Liberia airport (LIR).",
+    suits: "Groups and families traveling together",
+    address: "Coco, Guanacaste (approximate location)",
+    website: "https://www.airbnb.com/rooms/1649298342055708571",
+    websiteLabel: "View on Airbnb" },
   { id: "puerto-viejo", kind: "beach", name: "Puerto Viejo", lat: 9.6559, lng: -82.7549, loop: false,
     summary: "Caribbean beaches and food, with Cahuita just up the road.",
     suits: "A different coast and Caribbean food" },
@@ -49,6 +55,7 @@ const ICONS = {
   restaurant: '<path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/>',
   beach: '<path d="M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/>',
   nature: '<path d="M10 10v.2A3 3 0 0 1 8.9 16H5a3 3 0 0 1-1-5.8V10a3 3 0 0 1 6 0Z"/><path d="M7 16v6"/><path d="M13 19v3"/><path d="M12 19h8.3a1 1 0 0 0 .7-1.7L18 14h.3a1 1 0 0 0 .7-1.7L16 9h.2a1 1 0 0 0 .8-1.7L13 3l-1.4 1.5"/>',
+  stay: '<path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>',
   town: '<path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/>'
 };
 
@@ -57,7 +64,8 @@ const KIND_LABELS = {
   restaurant: "Restaurant",
   town: "Town or region",
   beach: "Beach",
-  nature: "Nature or park"
+  nature: "Nature or park",
+  stay: "Place to stay"
 };
 
 function glyph(kind, size) {
@@ -187,7 +195,7 @@ if (mapCanvas && window.L) {
       links.append(tel);
     }
     if (place.website) {
-      const site = el("a", "", "Website");
+      const site = el("a", "", place.websiteLabel || "Website");
       site.href = place.website;
       site.target = "_blank";
       site.rel = "noopener";

@@ -8,6 +8,12 @@ const PLACES = [
   { id: "sanjose", kind: "town", name: "Central Valley", lat: 9.9281, lng: -84.0907, loop: true,
     summary: "San José and the coffee highlands, with Poás and Irazú nearby.",
     suits: "Arrival, departure, and coffee" },
+  { id: "freddo-fresas", kind: "restaurant", name: "Restaurante Freddo Fresas", lat: 10.15721, lng: -84.19561, loop: false, status: "Not on the 8-day loop",
+    summary: "A Costa Rican food stop known for strawberries, on the road up to Poás volcano.",
+    suits: "A stop on the way to Poás",
+    address: "Carretera Principal al Volcán Poás, 200 m norte del cementerio de Fraijanes, Fraijanes, Alajuela",
+    phone: "+506 2482 2800",
+    maps: "https://www.google.com/maps/place/?q=place_id:ChIJUYSvSHv0oI8RLmXjPu7HF1Q" },
   { id: "fortuna", kind: "nature", name: "Arenal / La Fortuna", lat: 10.4716, lng: -84.6455, loop: true,
     summary: "The viewpoint, hanging bridges, the waterfall, and hot springs.",
     suits: "A first volcano and an easy base" },
@@ -68,6 +74,7 @@ if (mapCanvas && window.L) {
   const markers = new Map();
 
   function statusText(place) {
+    if (place.status) return place.status;
     if (place.loop === true) return "On the 8-day loop";
     if (place.loop === false) return "Worth extra days";
     return "International airport";
@@ -120,6 +127,7 @@ if (mapCanvas && window.L) {
       el("strong", "popup-title", place.name),
       el("p", "", place.summary),
       el("p", "popup-suits", place.suits),
+      ...(place.address ? [el("p", "popup-address", place.address)] : []),
       el("p", `popup-status popup-status-${tone(place)}`, `${KIND_LABELS[place.kind]} · ${statusText(place)}`)
     );
     const links = el("p", "popup-links");

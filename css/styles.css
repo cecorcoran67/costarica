@@ -642,6 +642,11 @@ a:hover {
   color: var(--ink-muted);
 }
 
+.leaflet-popup-content .popup-address {
+  margin-top: var(--space-xs);
+  font-size: var(--text-xs);
+}
+
 .leaflet-popup-content .popup-status {
   margin-top: var(--space-xs);
   font-size: var(--text-xs);

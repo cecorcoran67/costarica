@@ -14,6 +14,13 @@ const PLACES = [
     address: "Carretera Principal al Volcán Poás, 200 m norte del cementerio de Fraijanes, Fraijanes, Alajuela",
     phone: "+506 2482 2800",
     maps: "https://www.google.com/maps/place/?q=place_id:ChIJUYSvSHv0oI8RLmXjPu7HF1Q" },
+  { id: "dinoland", kind: "nature", name: "Dinoland", lat: 10.23772, lng: -84.27905, loop: false, status: "Not on the 8-day loop",
+    summary: "A family theme park with more than 25 life-size animatronic dinosaurs on a forest trail, plus the turquoise Río Agrio waterfall.",
+    suits: "Families with kids",
+    address: "4 km north of the Bajos del Toro sports field, Toro Amarillo, Sarchí, Alajuela",
+    phone: "+506 8887 0310",
+    website: "https://dinolandcostarica.com/en/",
+    maps: "https://maps.app.goo.gl/oxWCEdKS8Tu86E4V9" },
   { id: "fortuna", kind: "nature", name: "Arenal / La Fortuna", lat: 10.4716, lng: -84.6455, loop: true,
     summary: "The viewpoint, hanging bridges, the waterfall, and hot springs.",
     suits: "A first volcano and an easy base" },
@@ -178,6 +185,13 @@ if (mapCanvas && window.L) {
       const tel = el("a", "", place.phone);
       tel.href = `tel:${place.phone.replace(/\s+/g, "")}`;
       links.append(tel);
+    }
+    if (place.website) {
+      const site = el("a", "", "Website");
+      site.href = place.website;
+      site.target = "_blank";
+      site.rel = "noopener";
+      links.append(site);
     }
     const gmaps = el("a", "", "Google Maps");
     gmaps.href = mapsUrl(place);

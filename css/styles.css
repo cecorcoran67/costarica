@@ -690,6 +690,67 @@ a:hover {
   color: var(--teal);
 }
 
+.season-scroll {
+  overflow-x: auto;
+}
+
+.season-table {
+  width: 100%;
+  min-width: 40rem;
+  border-collapse: separate;
+  border-spacing: 3px;
+  font-size: var(--text-xs);
+}
+
+.season-table caption {
+  text-align: left;
+  margin-bottom: var(--space-xs);
+  font-weight: 700;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--amber-ink);
+}
+
+.season-table thead th {
+  font-weight: 700;
+  color: var(--ink-muted);
+}
+
+.season-table tbody th {
+  text-align: left;
+  font-family: var(--font-serif);
+  font-size: var(--text-md);
+  font-weight: 560;
+  padding-right: var(--space-sm);
+  min-width: 10rem;
+}
+
+.season-table tbody th small {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: var(--text-xs);
+  font-weight: 400;
+  color: var(--ink-muted);
+}
+
+.season-table td {
+  height: 3rem;
+  border-radius: var(--radius-sm);
+  text-align: center;
+  font-weight: 600;
+}
+
+.season-dry { background: var(--amber); color: var(--canopy-deep); }
+.season-drier { background: #ebc58f; color: var(--canopy-deep); }
+.season-rain { background: #7fb3ad; color: var(--canopy-deep); }
+.season-wet { background: var(--teal-deep); color: var(--paper); }
+
+.season-sources {
+  margin-top: var(--space-md);
+  font-size: var(--text-xs);
+  color: var(--ink-muted);
+}
+
 .site-footer {
   background: var(--canopy-deep);
   color: var(--on-canopy);
@@ -810,4 +871,13 @@ section[id] {
 
 #map {
   padding-bottom: 0;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
 }

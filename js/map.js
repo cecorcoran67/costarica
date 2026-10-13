@@ -37,6 +37,33 @@ const PLACES = [
   { id: "manuel", kind: "nature", name: "Manuel Antonio", lat: 9.3923, lng: -84.1398, loop: true,
     summary: "Park trails, monkeys, sloths, and a swimable beach.",
     suits: "Wildlife and beach in one stop" },
+  { id: "sky-arenal", kind: "zipline", name: "Sky Adventures Arenal Park", lat: 10.42477, lng: -84.73587, status: "Not on the 8-day loop", loop: false,
+    summary: "Ziplines that run mountain to mountain on the edge of Arenal, with hanging bridges and forest walks in the same park.",
+    suits: "Big volcano views from the line",
+    phone: "+506 2479 4100",
+    website: "https://skyadventures.travel/" },
+  { id: "ecoglide", kind: "zipline", name: "Ecoglide Arenal Park", lat: 10.47527, lng: -84.67695, status: "Not on the 8-day loop", loop: false,
+    summary: "An adventure and nature park by Arenal volcano with canopy tours and nature walks.",
+    suits: "A zip line close to La Fortuna town",
+    phone: "+506 2479 7120",
+    website: "https://www.arenalecoglide.com/" },
+  { id: "selvatura", kind: "zipline", name: "Selvatura Park", lat: 10.34243, lng: -84.79861, status: "Not on the 8-day loop", loop: false,
+    summary: "Thirteen ziplines and a Tarzan swing over the Monteverde cloud forest, with hanging bridges and a sloth habitat in the park.",
+    suits: "Zip lining through cloud forest",
+    phone: "+506 4001 7895",
+    website: "https://www.selvatura.com/",
+    maps: "https://maps.app.goo.gl/2ZTQ8sXrScv7yXqf6" },
+  { id: "diamante", kind: "zipline", name: "Diamante Eco Adventure Park", lat: 10.52221, lng: -85.74478, status: "Not on the 8-day loop", loop: false,
+    summary: "A Guanacaste adventure park on the coast with ziplines, including a Superman line, plus animals and ATV tours.",
+    suits: "A full adventure day near Playas del Coco",
+    phone: "+506 2105 5200",
+    website: "https://diamanteecoadventurepark.com/",
+    maps: "https://maps.app.goo.gl/JJyAovTFh4Qsfpru7" },
+  { id: "guachipelin", kind: "zipline", name: "Hacienda Guachipelín", lat: 10.75208, lng: -85.37965, status: "Not on the 8-day loop", loop: false,
+    summary: "A hotel and ranch at the foot of Rincón de la Vieja with a canopy tour of ziplines, rappel, rock climbing, a swing and bridges, plus hot springs.",
+    suits: "Ziplines on a Rincón de la Vieja day",
+    phone: "+506 2690 2900",
+    website: "https://www.guachipelin.com/" },
   { id: "guanacaste", kind: "beach", name: "Guanacaste", lat: 10.2995, lng: -85.8414, loop: false,
     summary: "Tamarindo, with Nosara and the Papagayo gulf along the same coast.",
     suits: "Sun, swimming, and surf" },
@@ -69,6 +96,7 @@ const ICONS = {
   beach: '<path d="M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/>',
   nature: '<path d="M10 10v.2A3 3 0 0 1 8.9 16H5a3 3 0 0 1-1-5.8V10a3 3 0 0 1 6 0Z"/><path d="M7 16v6"/><path d="M13 19v3"/><path d="M12 19h8.3a1 1 0 0 0 .7-1.7L18 14h.3a1 1 0 0 0 .7-1.7L16 9h.2a1 1 0 0 0 .8-1.7L13 3l-1.4 1.5"/>',
   stay: '<path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>',
+  zipline: '<path d="M10 3h.01"/><path d="M14 2h.01"/><path d="m2 9 20-5"/><path d="M12 12V6.5"/><rect width="16" height="10" x="4" y="12" rx="3"/><path d="M9 12v5"/><path d="M15 12v5"/><path d="M4 17h16"/>',
   town: '<path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/>'
 };
 
@@ -78,7 +106,8 @@ const KIND_LABELS = {
   town: "Town or region",
   beach: "Beach",
   nature: "Nature or park",
-  stay: "Place to stay"
+  stay: "Place to stay",
+  zipline: "Zip line"
 };
 
 function glyph(kind, size) {

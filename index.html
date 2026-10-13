@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Costa Rica — a visitor guide</title>
+    <meta name="description" content="A first-visit guide to Costa Rica: regions, beaches, volcanoes, wildlife, food, and an eight-day loop from the Central Valley to Arenal, Monteverde, and Manuel Antonio.">
+    <meta name="theme-color" content="#1b4332">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,560;9..144,640&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+    <link rel="stylesheet" href="css/styles.css">
+    <script>document.documentElement.classList.add("js");</script>
+  </head>
+  <body>
+    <a class="skip" href="#welcome">Skip to content</a>
+
+    <header class="site-header">
+      <a class="brand" href="#welcome">Costa Rica</a>
+      <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span class="menu-icon" aria-hidden="true"></span>
+        <span class="menu-label">Menu</span>
+      </button>
+      <nav class="site-nav" id="site-nav" aria-label="On this page">
+        <a href="#welcome" aria-current="true">Welcome</a>
+        <a href="#glance">At a glance</a>
+        <a href="#regions">Regions</a>
+        <a href="#map">Map</a>
+        <a href="#experiences">What to do</a>
+        <a href="#itinerary">Itinerary</a>
+        <a href="#practical">Before you go</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" id="welcome">
+        <div class="hero-copy">
+          <p class="eyebrow eyebrow-on-dark">A guide for a first visit</p>
+          <h1>Cloud forest, volcanoes, and two very different coasts.</h1>
+          <p class="lede">Pura vida is the local shorthand for hello, thanks, and don’t hurry. The country behind it is compact: coffee hills, a perfect cone of a volcano, dry forest, and rainforest that runs into the Pacific and the Caribbean. This page is what is worth your time, plus an eight-day loop a first-timer can follow.</p>
+        </div>
+        <figure class="hero-photo">
+          <img src="images/arenal.jpg" width="1800" height="1350" alt="Arenal volcano rising over green forest, its peak wrapped in a band of cloud.">
+          <figcaption>Arenal, with the peak in cloud. Mornings are the clearer bet.</figcaption>
+        </figure>
+      </section>
+
+      <section class="band band-inset" id="glance">
+        <div class="wrap">
+          <p class="eyebrow">At a glance</p>
+          <h2>The short version</h2>
+          <dl class="fact-grid">
+            <div class="fact">
+              <dt>Language</dt>
+              <dd>Spanish. English is common in tourist towns, and a few phrases go a long way everywhere else.</dd>
+            </div>
+            <div class="fact">
+              <dt>Money</dt>
+              <dd>The colón is the currency. US dollars are widely accepted at hotels, tours, and many restaurants.</dd>
+            </div>
+            <div class="fact">
+              <dt>Dry season</dt>
+              <dd>Roughly December to April on the Pacific: sunnier beaches and firmer roads.</dd>
+            </div>
+            <div class="fact">
+              <dt>Green season</dt>
+              <dd>May to November. Lusher forest, fewer people, and rain that often arrives in the afternoon.</dd>
+            </div>
+            <div class="fact">
+              <dt>On the road</dt>
+              <dd>Drive on the right. Distances on the map take longer once the road starts climbing.</dd>
+            </div>
+            <div class="fact">
+              <dt>Good to know</dt>
+              <dd>Costa Rica has had no standing army since 1948. Most international flights use San José (SJO) or Liberia (LIR).</dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      <section class="band" id="regions">
+        <div class="wrap">
+          <p class="eyebrow">Regions</p>
+          <h2>Where people actually go</h2>
+          <p class="intro">You do not need all of these in one trip. Pick a coast, a volcano, and one forest, and the week will already feel full.</p>
+          <div class="card-grid card-grid-regions">
+            <article class="card">
+              <h3>Guanacaste</h3>
+              <p>The Pacific northwest: dry forest, howler monkeys, and long beaches such as Tamarindo, Nosara, and the Papagayo gulf.</p>
+              <p class="suits"><span>Good for</span> sun, swimming, and surf</p>
+            </article>
+            <article class="card">
+              <h3>Arenal / La Fortuna</h3>
+              <p>The cone of Arenal, hot springs, hanging bridges, and the La Fortuna waterfall. The most straightforward volcano stop in the country.</p>
+              <p class="suits"><span>Good for</span> a first volcano and an easy base</p>
+            </article>
+            <article class="card">
+              <h3>Monteverde</h3>
+              <p>Cloud forest on the continental divide. Cooler, misty, and full of birds. A quetzal is possible with a guide and some luck.</p>
+              <p class="suits"><span>Good for</span> forest, canopy walks, and cooler nights</p>
+            </article>
+            <article class="card">
+              <h3>Central Valley</h3>
+              <p>San José and the coffee highlands. Cooler evenings, coffee tours, and day trips up to the craters of Poás and Irazú.</p>
+              <p class="suits"><span>Good for</span> arrival, departure, and coffee</p>
+            </article>
+            <article class="card">
+              <h3>Central Pacific</h3>
+              <p>Manuel Antonio and Quepos. A national park where monkeys, sloths, and a swimable beach sit a short walk apart.</p>
+              <p class="suits"><span>Good for</span> wildlife and beach in one stop</p>
+            </article>
+            <article class="card">
+              <h3>Caribbean coast</h3>
+              <p>Puerto Viejo, Cahuita, and the Tortuguero canals. Afro-Caribbean food, a slower pace, and rain on its own schedule. Tortuguero is reached by boat.</p>
+              <p class="suits"><span>Good for</span> a different coast and canal wildlife</p>
+            </article>
+            <article class="card">
+              <h3>Osa Peninsula</h3>
+              <p>Corcovado and primary forest at the end of the road. Remote, richer in wildlife, and better as the focus of a trip than a quick add-on.</p>
+              <p class="suits"><span>Good for</span> a wilder second visit, or extra days</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="band band-inset" id="map">
+        <div class="wrap">
+          <p class="eyebrow">Map</p>
+          <h2>Recommended places</h2>
+          <p class="intro">The same stops as the guide, in the country. Choose a place to see where it sits. Amber pins are on the eight-day loop. Teal pins are worth extra days. Squares are the international airports.</p>
+          <ul class="map-legend">
+            <li><span class="place-pin place-pin-loop" aria-hidden="true"></span> On the 8-day loop</li>
+            <li><span class="place-pin" aria-hidden="true"></span> Worth extra days</li>
+            <li><span class="place-pin place-pin-airport" aria-hidden="true"></span> Airports</li>
+          </ul>
+          <div class="map-layout">
+            <div class="map-canvas" id="place-map">
+              <p class="map-fallback">The place list names the same stops if the map does not load.</p>
+            </div>
+            <ul class="place-list">
+              <li>
+                <button type="button" data-place="sjo" data-lat="9.9939" data-lng="-84.2088" data-kind="airport" data-suits="Most international flights">
+                  <strong>SJO · Juan Santamaría</strong>
+                  <span>The main airport, in Alajuela, about 20 minutes from San José. Not downtown.</span>
+                </button>
+              </li>
+              <li>
+                <button type="button" data-place="lir" data-lat="10.5933" data-lng="-85.5444" data-kind="airport" data-suits="Gateway to Guanacaste">
+                  <strong>LIR · Liberia</strong>
+                  <span>Daniel Oduber Quirós International Airport, closer to the Pacific northwest beaches.</span>
+                </button>
+              </li>
+              <li>
+                <button type="button" data-place="sanjose" data-lat="9.9281" data-lng="-84.0907" data-loop="true" data-suits="Arrival, departure, and coffee">
+                  <strong>Central Valley</strong>
+                  <span>San José and the coffee highlands, with Poás and Irazú nearby.</span>
+                </button>
+              </li>
+              <li>
+                <button type="button" data-place="fortuna" data-lat="10.4716" data-lng="-84.6455" data-loop="true" data-suits="A first volcano and an easy base">
+                  <strong>Arenal / La Fortuna</strong>
+                  <span>The viewpoint, hanging bridges, the waterfall, and hot springs.</span>
+                </button>
+              </li>
+              <li>
+                <button type="button" data-place="monteverde" data-lat="10.3085" data-lng="-84.8203" data-loop="true" data-suits="Forest, canopy walks, and cooler nights">
+                  <strong>Monteverde</strong>
+                  <span>Cloud forest on the continental divide.</span>
+                </button>
+              </li>
+              <li>
+                <button type="button" data-place="manuel" data-lat="9.3923" data-lng="-84.1398" data-loop="true" data-suits="Wildlife and beach in one stop">
+                  <strong>Manuel Antonio</strong>
+                  <span>Park trails, monkeys, sloths, and a swimable beach.</span>
+                </button>
+              </li>
+              <li>
+                <button type="button" data-place="guanacaste" data-lat="10.2995" data-lng="-85.8414" data-loop="false" data-suits="Sun, swimming, and surf">
+                  <strong>Guanacaste</strong>
+                  <span>Tamarindo, with Nosara and the Papagayo gulf along the same coast.</span>
+                </button>
+              </li>
+              <li>
+                <button type="button" data-place="puerto-viejo" data-lat="9.6559" data-lng="-82.7549" data-loop="false" data-suits="A different coast and Caribbean food">
+                  <strong>Puerto Viejo</strong>
+                  <span>Caribbean beaches and food, with Cahuita just up the road.</span>
+                </button>
+              </li>
+              <li>
+                <button type="button" data-place="tortuguero" data-lat="10.5428" data-lng="-83.5024" data-loop="false" data-suits="Canals and turtles in season">
+                  <strong>Tortuguero</strong>
+                  <span>Reached by boat or a small plane, not by a coastal drive.</span>
+                </button>
+              </li>
+              <li>
+                <button type="button" data-place="osa" data-lat="8.538" data-lng="-83.3054" data-loop="false" data-suits="A wilder trip, with extra days">
+                  <strong>Osa Peninsula</strong>
+                  <span>Puerto Jiménez, the usual gateway to Corcovado.</span>
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <figure class="bleed">
+        <img src="images/coast.jpg" width="1800" height="1011" alt="Aerial view of dense green forest meeting a dark sand shoreline and the Pacific Ocean.">
+        <figcaption>Forest running straight into the Pacific.</figcaption>
+      </figure>
+
+      <section class="band band-inset" id="experiences">
+        <div class="wrap">
+          <p class="eyebrow">What to do</p>
+          <h2>Beaches, heat, animals, and lunch</h2>
+          <p class="intro">Names and what to expect. Hours, fees, and trail conditions change with the season, so confirm them before you go.</p>
+          <figure class="frame">
+            <img src="images/manuel-antonio.jpg" width="1800" height="1013" alt="Aerial view of a pale beach, turquoise surf, and forested headlands at Manuel Antonio.">
+            <figcaption>Manuel Antonio, where the park trails meet the sand.</figcaption>
+          </figure>
+          <div class="card-grid">
+            <article class="card">
+              <h3>Beaches</h3>
+              <ul>
+                <li><strong>Manuel Antonio.</strong> Short park trails that end at a guarded-feeling cove.</li>
+                <li><strong>Guanacaste.</strong> Playa Conchal for swimming; Nosara and Santa Teresa if you want surf and a longer stay.</li>
+                <li><strong>Puerto Viejo.</strong> Reef, surf breaks, and Caribbean food in town.</li>
+              </ul>
+              <p>The sun is strong, and Pacific beaches can have rip currents. Swim where other people are, and ask locally that morning.</p>
+            </article>
+            <article class="card">
+              <h3>Volcanoes and hot springs</h3>
+              <ul>
+                <li><strong>Arenal.</strong> Viewpoints, foothill trails, and hot springs around La Fortuna. The summit is closed to hikers.</li>
+                <li><strong>Poás and Irazú.</strong> Crater visits from the Central Valley. Cloud often sits on the rim by late morning, so go early.</li>
+                <li><strong>Rincón de la Vieja.</strong> Mud pots and hiking in Guanacaste.</li>
+              </ul>
+            </article>
+            <article class="card">
+              <h3>Wildlife and parks</h3>
+              <ul>
+                <li><strong>Manuel Antonio.</strong> White-faced monkeys, sloths, and easy trails.</li>
+                <li><strong>Monteverde.</strong> Cloud forest, hummingbirds, and a chance of a quetzal.</li>
+                <li><strong>Tortuguero.</strong> Canals, river life, and sea turtles in season.</li>
+                <li><strong>Corcovado.</strong> Macaws, tapir country, and primary forest with a guide.</li>
+              </ul>
+              <p>A guide is worth it. Dawn is when animals are moving.</p>
+            </article>
+            <article class="card">
+              <h3>Food and coffee</h3>
+              <ul>
+                <li><strong>Gallo pinto.</strong> Rice and beans, usually at breakfast.</li>
+                <li><strong>Casado.</strong> A plated lunch of rice, beans, salad, plantain, and fish or meat.</li>
+                <li><strong>Coffee.</strong> Grown in the Central Valley highlands. A farm visit is an easy half day.</li>
+                <li><strong>On the coast.</strong> Ceviche and fried plantain. Around Puerto Viejo, rice and beans cooked in coconut milk.</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="band" id="itinerary">
+        <div class="wrap">
+          <p class="eyebrow">Suggested loop</p>
+          <h2>Eight days, if you want a plan</h2>
+          <p class="intro">A first-timer route: Central Valley, Arenal, Monteverde, then Manuel Antonio. Adapt the nights if you already care more about surf or the Caribbean. This version leaves those for another trip on purpose.</p>
+          <ol class="timeline">
+            <li>
+              <span class="day-num">1</span>
+              <div>
+                <h3>Arrive San José, settle in the Central Valley</h3>
+                <p>Most flights land at Juan Santamaría (SJO), outside the city. After a long flight, stay in the valley instead of driving on. Eat, sleep, and if the afternoon is still kind, a nearby coffee stop is enough.</p>
+              </div>
+            </li>
+            <li>
+              <span class="day-num">2</span>
+              <div>
+                <h3>Travel to La Fortuna; Arenal viewpoint</h3>
+                <p>The shuttle is about three hours. Arenal is often clear in the morning and wearing cloud by afternoon, so go to a viewpoint when you arrive if the sky is open. The summit itself is closed.</p>
+              </div>
+            </li>
+            <li>
+              <span class="day-num">3</span>
+              <div>
+                <h3>Hot springs and hanging bridges</h3>
+                <p>Walk a hanging-bridge trail while it is cool. The La Fortuna waterfall is a steep side trip with a swim at the bottom if you want it. Save the hot springs for late afternoon. Pools range from simple to resort-scale.</p>
+              </div>
+            </li>
+            <li>
+              <span class="day-num">4</span>
+              <div>
+                <h3>Travel to Monteverde; cloud forest</h3>
+                <p>The link from La Fortuna is a rough, scenic ride of about three hours. The classic jeep-boat-jeep crosses Lake Arenal and skips some of the mountain road. Arrive, walk the town, and leave the reserve for morning.</p>
+              </div>
+            </li>
+            <li>
+              <span class="day-num">5</span>
+              <div>
+                <h3>Canopy and night walk</h3>
+                <p>Enter the cloud-forest reserve when it opens, with a guide if you can. Mist and birds are the point; a quetzal is luck, not a promise. An afternoon canopy bridge and a guided night walk show two different versions of the same forest.</p>
+              </div>
+            </li>
+            <li>
+              <span class="day-num">6</span>
+              <div>
+                <h3>Travel to Manuel Antonio</h3>
+                <p>Plan on about four hours and treat it as a travel day. If you arrive with daylight, swim near where you are staying. Quepos, just north of the park, is the easier place to eat.</p>
+              </div>
+            </li>
+            <li>
+              <span class="day-num">7</span>
+              <div>
+                <h3>Park and beach</h3>
+                <p>Be at Manuel Antonio National Park when it opens. The trails are short and often busy with white-faced monkeys and sloths. Swim at the park beach, then leave the rest of the day unplanned. Check hours before you go.</p>
+              </div>
+            </li>
+            <li>
+              <span class="day-num">8</span>
+              <div>
+                <h3>Return toward San José and depart</h3>
+                <p>The drive back to SJO is about three hours. Leave a wide gap before an international flight. A late departure is calmer from a valley hotel than from the coast.</p>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="band band-inset" id="practical">
+        <div class="wrap">
+          <p class="eyebrow">Before you go</p>
+          <h2>So the week stays easy</h2>
+          <div class="card-grid">
+            <article class="card">
+              <h3>Getting around</h3>
+              <p>Shared shuttles are the straightforward way between the towns on this loop. Domestic flights help if you add Liberia, the Caribbean, or the Osa. A rental car is reasonable if you are comfortable on winding mountain roads in rain.</p>
+              <p>Keep transfer days free of big hikes. A night drive on a mountain road is slow, and the useful scenery is gone anyway.</p>
+            </article>
+            <article class="card">
+              <h3>Money</h3>
+              <p>Cards work in towns. Smaller sodas (neighborhood restaurants), some park snacks, and tips are easier with cash. ATMs are in the towns on this route.</p>
+              <p>Ask which currency a price is in before you agree. Dollars and colones both show up on menus.</p>
+            </article>
+            <article class="card">
+              <h3>Packing</h3>
+              <ul>
+                <li>Light clothes you can layer, plus a rain jacket</li>
+                <li>Shoes with grip for wet trails</li>
+                <li>A swimsuit, reef-safe sunscreen, and insect repellent</li>
+                <li>A dry bag or zip bag for a phone</li>
+                <li>A photo of your passport, kept separate from the original</li>
+              </ul>
+              <p>Evenings in Monteverde and the Central Valley are cool. The coast will not need the layer the cloud forest does.</p>
+            </article>
+            <article class="card">
+              <h3>A little Spanish</h3>
+              <dl class="phrases">
+                <div>
+                  <dt>Hola</dt>
+                  <dd>Hello</dd>
+                </div>
+                <div>
+                  <dt>Por favor / gracias</dt>
+                  <dd>Please / thank you</dd>
+                </div>
+                <div>
+                  <dt>Pura vida</dt>
+                  <dd>Hello, thanks, and “it’s all good”</dd>
+                </div>
+                <div>
+                  <dt>¿Cuánto cuesta?</dt>
+                  <dd>How much does it cost?</dd>
+                </div>
+                <div>
+                  <dt>La cuenta, por favor</dt>
+                  <dd>The check, please</dd>
+                </div>
+                <div>
+                  <dt>¿Dónde está…?</dt>
+                  <dd>Where is…?</dd>
+                </div>
+              </dl>
+            </article>
+            <article class="card card-wide">
+              <h3>Safety, plainly</h3>
+              <p>Keep an eye on bags in San José and on busy beaches. Leave passports and electronics in the hotel, not in a parked car. Swim at spots people are already using, and treat rip currents as the thing to ask about.</p>
+              <p>In green season, heavy rain can slow or close mountain roads, so an unhurried transfer day is part of the plan. Tap water is treated in most towns; ask at a small lodge if you are unsure.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap">
+        <p>A friendly guide for a first visit. Park hours, road conditions, and tour details change with weather and season.</p>
+        <ul class="credits">
+          <li>Arenal photo by <a href="https://unsplash.com/photos/volcano-shrouded-in-clouds-over-lush-green-forest-TIOshz85SYE">Alberto Bazan</a></li>
+          <li>Manuel Antonio photo by <a href="https://unsplash.com/photos/an-aerial-view-of-a-beach-and-ocean-vuP4OKgShnw">Juan Pablo Mascanfroni</a></li>
+          <li>Coastline photo by <a href="https://unsplash.com/photos/a-beach-with-trees-and-water-8DEkQYp0QMw">Dylan Gorman</a></li>
+          <li>All on <a href="https://unsplash.com/license">Unsplash</a></li>
+        </ul>
+      </div>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="js/main.js"></script>
+    <script src="js/map.js"></script>
+  </body>
+</html>
